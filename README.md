@@ -1,45 +1,45 @@
 # Task Manager API
 
-RESTful API для управления задачами (туду-листами) с использованием ASP.NET Core, Entity Framework Core и MySQL.
+RESTful API for task management (todo lists) using ASP.NET Core, Entity Framework Core, and MySQL.
 
-## Технологии
+## Technologies
 
 - C#
 - ASP.NET Core 9
 - Entity Framework Core
-- MySQL (для продакшн) / In-Memory Database (для разработки)
+- MySQL (for production) / In-Memory Database (for development)
 - Repository Pattern
 - Dependency Injection
 
-## Функциональность API
+## API Functionality
 
-- Создание задачи (название, дата выполнения, приоритет)
-- Получение списка задач (с возможностью фильтрации по дате и приоритету)
-- Обновление задачи (например, изменение статуса на "выполнено")
-- Удаление задачи
+- Create tasks (title, due date, priority)
+- Retrieve list of tasks (with filtering by date and priority)
+- Update tasks (e.g., change status to "completed")
+- Delete tasks
 
-## Настройка проекта
+## Project Setup
 
-### Предварительные требования
+### Prerequisites
 
 - .NET 9 SDK
-- MySQL сервер (для продакшн)
+- MySQL server (for production)
 
-### Режимы работы
+### Operation Modes
 
-#### Разработка
-В режиме разработки приложение использует базу данных в памяти (In-Memory Database), что упрощает локальное тестирование и отладку.
+#### Development
+In development mode, the application uses an In-Memory Database, which simplifies local testing and debugging.
 
-#### Продакшн
-Для продакшн-среды необходимо настроить подключение к MySQL базе данных.
+#### Production
+For production environments, you need to set up a connection to a MySQL database.
 
-1. Создайте базу данных в MySQL:
+1. Create a database in MySQL:
 
 ```sql
 CREATE DATABASE TaskManager;
 ```
 
-2. Обновите строку подключения в файле `appsettings.json`:
+2. Update the connection string in the `appsettings.json` file:
 
 ```json
 "ConnectionStrings": {
@@ -47,60 +47,51 @@ CREATE DATABASE TaskManager;
 }
 ```
 
-### Миграции Entity Framework
-
-Выполните следующие команды из директории проекта для создания и применения миграций:
-
-```bash
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-## Запуск приложения
+## Running the Application
 
 ```bash
 dotnet run
 ```
 
-По умолчанию API будет доступен по адресу `https://localhost:5001` и `http://localhost:5000`.
+By default, the API will be available at `https://localhost:5001` and `http://localhost:5000`.
 
-## API endpoints
+## API Endpoints
 
-- `GET /api/tasks` - Получить список всех задач
-- `GET /api/tasks/{id}` - Получить задачу по ID
-- `POST /api/tasks` - Создать новую задачу
-- `PUT /api/tasks/{id}` - Обновить существующую задачу
-- `DELETE /api/tasks/{id}` - Удалить задачу
-- `GET /api/tasks/priority/{priority}` - Получить задачи по приоритету
-- `GET /api/tasks/completed/{isCompleted}` - Получить задачи по статусу завершения
+- `GET /api/tasks` - Get all tasks
+- `GET /api/tasks/{id}` - Get task by ID
+- `POST /api/tasks` - Create a new task
+- `PUT /api/tasks/{id}` - Update an existing task
+- `DELETE /api/tasks/{id}` - Delete a task
+- `GET /api/tasks/priority/{priority}` - Get tasks by priority
+- `GET /api/tasks/completed/{isCompleted}` - Get tasks by completion status
 
-## Примеры запросов
+## Request Examples
 
-### Создание задачи
+### Creating a Task
 
 ```json
 POST /api/tasks
 Content-Type: application/json
 
 {
-  "title": "Изучить ASP.NET Core",
+  "title": "Learn ASP.NET Core",
   "dueDate": "2023-12-31T23:59:59Z",
   "priority": 2
 }
 ```
 
-### Обновление задачи
+### Updating a Task
 
 ```json
 PUT /api/tasks/1
 Content-Type: application/json
 
 {
-  "title": "Изучить ASP.NET Core и Entity Framework",
+  "title": "Learn ASP.NET Core and Entity Framework",
   "isCompleted": true
 }
 ```
 
-## Тестирование API
+## Testing the API
 
-Вы можете использовать Postman или curl для тестирования API. 
+You can use Postman or curl to test the API. 
