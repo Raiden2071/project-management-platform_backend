@@ -129,3 +129,4 @@
 /Users/Slava/Desktop/projects/Learn/Pet-Projects/project-management-platform/backend/TaskManager/obj/Debug/net9.0/TaskManager.genruntimeconfig.cache
 /Users/Slava/Desktop/projects/Learn/Pet-Projects/project-management-platform/backend/TaskManager/obj/Debug/net9.0/ref/TaskManager.dll
 /Users/Slava/Desktop/projects/Learn/Pet-Projects/project-management-platform/backend/TaskManager/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.InMemory.dll
+/Users/Slava/Desktop/projects/Learn/Pet-Projects/project-management-platform/backend/TaskManager/obj/Debug/net9.0/TaskManager.sourcelink.json

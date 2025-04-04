@@ -15,12 +15,6 @@ builder.Services.AddOpenApi();
 // Configure database connection
 if (builder.Environment.IsDevelopment())
 {
-    // Use in-memory database for development
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseInMemoryDatabase("TaskManagerDb"));
-}
-else
-{
     // Use MySQL for production
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<AppDbContext>(options =>
