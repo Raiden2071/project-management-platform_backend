@@ -11,7 +11,9 @@ namespace TaskManager.Models
         [Required]
         [StringLength(100)]
         public string Title { get; set; } = string.Empty;
-        
+
+        public DateTime StartDate { get; set; } = DateTime.Today;
+
         public DateTime? DueDate { get; set; }
         
         public TaskPriority Priority { get; set; } = TaskPriority.Normal;

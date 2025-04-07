@@ -39,6 +39,7 @@ namespace TaskManager.Services
                 Title = createTaskDto.Title,
                 DueDate = createTaskDto.DueDate,
                 Priority = createTaskDto.Priority,
+                StartDate = createTaskDto.StartDate,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -58,6 +59,11 @@ namespace TaskManager.Services
             if (updateTaskDto.Title != null)
             {
                 existingTask.Title = updateTaskDto.Title;
+            }
+
+            if (updateTaskDto.StartDate.HasValue)
+            {
+                existingTask.StartDate = updateTaskDto.StartDate.Value;
             }
             
             if (updateTaskDto.DueDate.HasValue)
@@ -103,6 +109,7 @@ namespace TaskManager.Services
             {
                 Id = task.Id,
                 Title = task.Title,
+                StartDate = task.StartDate,
                 DueDate = task.DueDate,
                 Priority = task.Priority,
                 IsCompleted = task.IsCompleted,

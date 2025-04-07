@@ -11,6 +11,8 @@ namespace TaskManager.DTOs
         [StringLength(100)]
         public string Title { get; set; } = string.Empty;
         
+        public DateTime StartDate { get; set; } = DateTime.Today;
+
         public DateTime? DueDate { get; set; }
         
         public TaskPriority Priority { get; set; } = TaskPriority.Normal;
@@ -21,6 +23,8 @@ namespace TaskManager.DTOs
     {
         [StringLength(100)]
         public string? Title { get; set; }
+
+        public DateTime? StartDate { get; set; }
         
         public DateTime? DueDate { get; set; }
         
@@ -35,6 +39,8 @@ namespace TaskManager.DTOs
         public int Id { get; set; }
         
         public string Title { get; set; } = string.Empty;
+
+        public DateTime StartDate { get; set; }
         
         public DateTime? DueDate { get; set; }
         
