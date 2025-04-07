@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TaskManager.Data;
+using TaskManager.DTOs;
 using TaskManager.Interfaces;
 using TaskManager.Models;
 
@@ -30,6 +31,52 @@ namespace TaskManager.Repositories
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while getting all tasks");
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Models.Task>> GetFilteredTasksAsync(TaskFilterDto filter)
+        {
+            try
+            {
+                // Начинаем с запроса всех задач
+                IQueryable<Models.Task> query = _context.Tasks;
+                
+                // Применяем фильтры, если они указаны
+                
+                // Фильтрация по дате начала
+                if (filter.StartDate.HasValue)
+                {
+                    query = query.Where(t => t.StartDate.Date == filter.StartDate.Value.Date);
+                }
+                
+                // Фильтрация по приоритету
+                if (filter.Priority.HasValue)
+                {
+                    query = query.Where(t => t.Priority == filter.Priority.Value);
+                }
+                
+                // Фильтрация по статусу
+                if (filter.IsCompleted.HasValue)
+                {
+                    query = query.Where(t => t.IsCompleted == filter.IsCompleted.Value);
+                }
+                
+                // Поиск по названию
+                if (!string.IsNullOrWhiteSpace(filter.TitleContains))
+                {
+                    query = query.Where(t => t.Title.Contains(filter.TitleContains));
+                }
+                
+                // По умолчанию сортируем по дате создания (от новых к старым)
+                query = query.OrderByDescending(t => t.CreatedAt);
+                
+                // Получаем итоговый список
+                return await query.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while getting filtered tasks");
                 throw;
             }
         }

@@ -32,6 +32,15 @@ namespace TaskManager.Controllers
             return Ok(tasks);
         }
 
+        [HttpGet("filter")]
+        [ProducesResponseType(typeof(IEnumerable<TaskDto>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<TaskDto>>> GetFilteredTasks([FromQuery] TaskFilterDto filter)
+        {
+            _logger.LogInformation("Getting filtered tasks");
+            var tasks = await _taskService.GetFilteredTasksAsync(filter);
+            return Ok(tasks);
+        }
+
         // GET: api/Tasks/5
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(TaskDto), StatusCodes.Status200OK)]

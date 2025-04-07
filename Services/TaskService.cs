@@ -26,6 +26,12 @@ namespace TaskManager.Services
             return tasks.Select(t => MapToTaskDto(t));
         }
 
+        public async Task<IEnumerable<TaskDto>> GetFilteredTasksAsync(TaskFilterDto filter)
+        {
+            var tasks = await _taskRepository.GetFilteredTasksAsync(filter);
+            return tasks.Select(t => MapToTaskDto(t));
+        }
+
         public async Task<TaskDto?> GetTaskByIdAsync(int id)
         {
             var task = await _taskRepository.GetTaskByIdAsync(id);
@@ -101,7 +107,6 @@ namespace TaskManager.Services
             var tasks = await _taskRepository.GetCompletedTasksAsync(isCompleted);
             return tasks.Select(t => MapToTaskDto(t));
         }
-
         // Helper method to map from Task entity to TaskDto
         private static TaskDto MapToTaskDto(Models.Task task)
         {
