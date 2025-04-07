@@ -22,7 +22,7 @@ namespace TaskManager.Data
                 entity.ToTable("Tasks");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.CreatedAt);
             });
         }
     }

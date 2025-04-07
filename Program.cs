@@ -15,7 +15,6 @@ builder.Services.AddOpenApi();
 // Configure database connection
 if (builder.Environment.IsDevelopment())
 {
-    // Use MySQL for production
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(connectionString, 
